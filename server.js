@@ -17,7 +17,7 @@ const app = express();
 // Middleware
 // Update CORS configuration
 app.use(cors({
-  origin: ['http://localhost:5500', 'http://127.0.0.1:5501', 'http://localhost:3000'],
+  origin: ['https://attendance-system-xrp6.onrender.com', 'http://127.0.0.1:5501', 'http://localhost:3000'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
