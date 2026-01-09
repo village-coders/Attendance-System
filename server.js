@@ -17,7 +17,7 @@ const app = express();
 // Middleware
 // Update CORS configuration
 app.use(cors({
-  origin: ['https://attendance-system-xrp6.onrender.com', 'http://127.0.0.1:5501', 'http://localhost:3000'],
+  origin: ['https://attendance-system-xrp6.onrender.com', 'http://127.0.0.1:5501', 'https://telutrainingsystem.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Database connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/football_attendance', {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
