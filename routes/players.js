@@ -54,7 +54,8 @@ router.post('/', authMiddleware, uploadPlayerImage.single('image'), async (req, 
       return res.status(400).json({ message: 'Jersey number already taken' });
     }
 
-    const image = req.files.path
+    const image = req.file.path
+
 
     if(!image){
       return res.status(400).json({ message: 'No file uploaded' });
@@ -114,7 +115,7 @@ router.put('/:id', authMiddleware, uploadPlayerImage.single('image'), async (req
     // Handle image upload
     if (req.file) {
       // Upload new image
-      updateData.image = req.file.path
+      updateData.image = req.file?.path
     }
 
     const player = await Player.findByIdAndUpdate(
