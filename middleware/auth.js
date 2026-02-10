@@ -20,8 +20,9 @@ const authMiddleware = (req, res, next) => {
 };
 
 const isCoach = (req, res, next) => {
-  if (req.user.role === 'coach') {
-    console.log(req.user)
+  if (req.user.user.role !== 'coach') {
+    console.log(req.user.role);
+    console.log(req.user);
     return res.status(403).json({ message: 'Access denied. Only coach can mark attendance.' });
   }
   next();
