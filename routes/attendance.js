@@ -1,5 +1,5 @@
 const express = require('express');
-const { authMiddleware } = require('../middleware/auth');
+const { authMiddleware, isCoach } = require('../middleware/auth');
 const Attendance = require('../models/attendance');
 const Player = require('../models/player');
 const router = express.Router();
@@ -43,12 +43,14 @@ router.get('/', authMiddleware, async (req, res) => {
 // @route   POST /api/attendance
 // @desc    Mark attendance for players
 // @access  Private
-router.post('/', authMiddleware, async (req, res) => {
+router.post('/', authMiddleware, isCoach, async (req, res) => {
   try {
     const { date, session, attendanceData } = req.body;
 
     const results = [];
     const errors = [];
+
+
 
     for (const item of attendanceData) {
       try {

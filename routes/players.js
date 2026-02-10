@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 
-const { authMiddleware } = require('../middleware/auth');
+const { authMiddleware, isCoach } = require('../middleware/auth');
 const Player = require('../models/player');
 const uploadPlayerImage = require('../middleware/multer');
 
@@ -44,7 +44,7 @@ router.get('/:id', authMiddleware, async (req, res) => {
 // @route   POST /api/players
 // @desc    Create a new player
 // @access  Private
-router.post('/', authMiddleware, uploadPlayerImage.single('image'), async (req, res) => {
+router.post('/', authMiddleware, isCoach, uploadPlayerImage.single('image'), async (req, res) => {
   try {
     const { name, position, jerseyNumber, alwaysAvailable } = req.body;
     
@@ -83,7 +83,7 @@ router.post('/', authMiddleware, uploadPlayerImage.single('image'), async (req, 
 // @route   PUT /api/players/:id
 // @desc    Update a player
 // @access  Private
-router.put('/:id', authMiddleware, uploadPlayerImage.single('image'), async (req, res) => {
+router.put('/:id', authMiddleware, isCoach, uploadPlayerImage.single('image'), async (req, res) => {
   try {
     const { name, position, jerseyNumber, alwaysAvailable } = req.body;
     
@@ -134,7 +134,7 @@ router.put('/:id', authMiddleware, uploadPlayerImage.single('image'), async (req
 // @route   DELETE /api/players/:id
 // @desc    Delete a player
 // @access  Private
-router.delete('/:id', authMiddleware, async (req, res) => {
+router.delete('/:id', authMiddleware, isCoach, async (req, res) => {
   try {
     const player = await Player.findById(req.params.id);
     if (!player) {
@@ -159,7 +159,7 @@ router.delete('/:id', authMiddleware, async (req, res) => {
 // @route   PATCH /api/players/:id/availability
 // @desc    Update player availability
 // @access  Private
-router.patch('/:id/availability', authMiddleware, async (req, res) => {
+router.patch('/:id/availability', authMiddleware, isCoach, async (req, res) => {
   try {
     const { alwaysAvailable } = req.body;
     

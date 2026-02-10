@@ -28,7 +28,8 @@ router.post('/login', async (req, res) => {
         id: user.id,
         username: user.username,
         name: user.name,
-        role: user.role
+        role: user.role,
+        position: user.position
       }
     };
 
@@ -45,7 +46,8 @@ router.post('/login', async (req, res) => {
             id: user.id,
             username: user.username,
             name: user.name,
-            role: user.role
+            role: user.role,
+            position: user.position
           }
         });
       }
@@ -60,11 +62,13 @@ router.post('/login', async (req, res) => {
 // @desc    Register a new user
 // @access  Public (in production, this should be protected)
 router.post('/register', async (req, res) => {
-  try {
-    const { username, password, name, role } = req.body;
+  try { 
+    const { username, password, name, role, position } = req.body;
 
     // Check if user exists
     let user = await User.findOne({ username });
+
+
     if (user) {
       return res.status(400).json({ message: 'User already exists' });
     }
@@ -74,7 +78,8 @@ router.post('/register', async (req, res) => {
       username,
       password,
       name,
-      role: role || 'coach'
+      position,
+      role: role || 'viewer'
     });
 
     await user.save();
@@ -85,7 +90,8 @@ router.post('/register', async (req, res) => {
         id: user.id,
         username: user.username,
         name: user.name,
-        role: user.role
+        role: user.role,
+        position: user.position
       }
     };
 
@@ -102,6 +108,7 @@ router.post('/register', async (req, res) => {
             id: user.id,
             username: user.username,
             name: user.name,
+            position: user.position,
             role: user.role
           }
         });

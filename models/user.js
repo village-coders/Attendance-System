@@ -18,8 +18,11 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['coach', 'admin', 'assistant'],
-    default: 'coach'
+    enum: ['coach', 'admin', 'viewer'],
+    default: 'viewer'
+  },
+  position: {
+    type: String
   },
   createdAt: {
     type: Date,

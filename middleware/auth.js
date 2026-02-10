@@ -18,11 +18,11 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-const isAdmin = (req, res, next) => {
-  if (req.user.role !== 'admin') {
-    return res.status(403).json({ message: 'Access denied. Admin only.' });
+const isCoach = (req, res, next) => {
+  if (req.user.role !== 'coach') {
+    return res.status(403).json({ message: 'Access denied. Only coach can mark attendance.' });
   }
   next();
 };
 
-module.exports = { authMiddleware, isAdmin };
+module.exports = { authMiddleware, isCoach };
