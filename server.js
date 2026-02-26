@@ -17,7 +17,7 @@ const app = express();
 // Middleware
 // Update CORS configuration
 app.use(cors({
-  origin: ['https://attendance.telufootballclub.com', 'https://alamu-attendance.vercel.app', 'https://telutrainingsystem.vercel.app'],
+  origin: ['https://attendance.telufootballclub.com', 'https://attendance.alamufootballacademy.com', 'https://telutrainingsystem.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -61,3 +61,4 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 
 });
+
