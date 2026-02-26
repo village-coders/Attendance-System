@@ -17,7 +17,7 @@ const app = express();
 // Middleware
 // Update CORS configuration
 app.use(cors({
-  origin: ['http://127.0.0.1:5500', 'http://127.0.0.1:5501', 'https://telutrainingsystem.vercel.app'],
+  origin: ['http://127.0.0.1:5500', 'https://alamu-attendance.vercel.app', 'https://telutrainingsystem.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -59,4 +59,5 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+
 });
